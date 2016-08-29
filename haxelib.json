@@ -1,0 +1,15 @@
+{
+    "classPath": "",
+    "contributors": [ "dstrekelj" ],
+    "dependencies": {
+        "odd": "",
+        "hxjava": "3.2.0"
+    },
+    "description": "Odd software renderer Android target",
+    "name": "odd-target-android",
+    "license": "MIT",
+    "releasenote": "Initial release",
+    "tags": [ "cross", "3d", "odd" ],
+    "url" : "https://github.com/dstrekelj/odd-target-android/",
+    "version": "1.0.0"
+}
