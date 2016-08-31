@@ -53,7 +53,7 @@ class OddSurfaceView extends SurfaceView implements Runnable
             {
                 // TODO: update
                 canvas = holder.lockCanvas();
-                canvas.drawRGB(0xff, 0x00, 0x00);
+                canvas.drawColor(0xff00ff00);
                 // TODO: draw
                 holder.unlockCanvasAndPost(canvas);
             }
