@@ -21,11 +21,13 @@ class TargetMacro
         copyProjectTemplate(asDirectoryPath(getLibPath() + DATA), asDirectoryPath(FileSystem.fullPath(Compiler.getOutput())));
 
         Sys.println("Generating sources");
+        /*
         if (FileSystem.exists(to + "/src"))
         {
             Sys.println("... Sources exist! Purging and regenerating");
             purgeDirectory(to + "/src");
         }
+        */
 
         Compiler.include("io", true, [], [asDirectoryPath(getLibPath())], true);
 

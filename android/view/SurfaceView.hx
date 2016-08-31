@@ -1,5 +1,7 @@
 package android.view;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
 
 extern class SurfaceView extends View

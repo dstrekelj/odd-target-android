@@ -2,6 +2,7 @@ package android.view;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.view.Surface;
 
 extern interface SurfaceHolder
 {
@@ -12,6 +13,7 @@ extern interface SurfaceHolder
     @:overload(function(var1 : Rect) : Canvas {})
     function lockCanvas() : Canvas;
     function unlockCanvasAndPost(var1 : Canvas) : Void;
+    function getSurface() : Surface;
 }
 
 @:native("android.view.SurfaceHolder.Callback")
