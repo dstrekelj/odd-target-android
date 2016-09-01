@@ -25,7 +25,11 @@ class FramebufferImpl implements Framebuffer
 
     public function getPixel(x : Int, y : Int) : Int
     {
-        return this.data.getPixel(x, y) & 0x00ffffff;
+        if (isValidPoint(x, y))
+        {
+            return this.data.getPixel(x, y) & 0x00ffffff;
+        }
+        return -1;
     }
 
     public function getR(x : Int, y : Int) : Int
@@ -45,7 +49,10 @@ class FramebufferImpl implements Framebuffer
     
     public function setPixel(x : Int, y : Int, rgb : Int) : Void
     {
-        this.data.setPixel(x, y, 0xff000000 | rgb);
+        if (isValidPoint(x, y))
+        {
+            this.data.setPixel(x, y, 0xff000000 | rgb);
+        }
     }
     
     public function setR(x : Int, y : Int, r : Int) : Void
@@ -61,5 +68,10 @@ class FramebufferImpl implements Framebuffer
     public function setB(x : Int, y : Int, b : Int) : Void
     {
 
+    }
+
+    function isValidPoint(x : Int, y : Int) : Bool
+    {
+        return x >= 0 && x < width && y >= 0 && y < height;
     }
 }
