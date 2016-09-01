@@ -9,16 +9,16 @@ import sys.io.Process;
 
 class TargetMacro
 {
-    static inline var DATA : String = "data";
+    static inline var TEMPLATE_DIR : String = "template";
 
     public static macro function init() : Expr
     {
-        var from = asDirectoryPath(getLibPath() + DATA);
+        var from = asDirectoryPath(getLibPath() + TEMPLATE_DIR);
         var to = asDirectoryPath(FileSystem.fullPath(Compiler.getOutput()));
         Sys.println("Initialising odd-target-android project");
         
         Sys.println("Copying project template");
-        copyProjectTemplate(asDirectoryPath(getLibPath() + DATA), asDirectoryPath(FileSystem.fullPath(Compiler.getOutput())));
+        copyProjectTemplate(asDirectoryPath(getLibPath() + TEMPLATE_DIR), asDirectoryPath(FileSystem.fullPath(Compiler.getOutput())));
 
         Sys.println("Generating sources");
         /*
