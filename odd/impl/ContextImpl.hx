@@ -1,4 +1,8 @@
-package odd._impl;
+package odd.impl;
+
+import io.github.dstrekelj.odd.OddActivity;
+
+import odd.impl.FramebufferImpl;
 
 @:allow(odd.Context)
 class ContextImpl
@@ -14,7 +18,8 @@ class ContextImpl
 
     function run(onUpdate : Void->Void, onDraw : Framebuffer->Void) : Void
     {
-        onUpdate();
-        onDraw(framebuffer);
+        OddActivity.osvContext.setFramebuffer(framebuffer);
+        OddActivity.osvContext.setOnUpdate(onUpdate);
+        OddActivity.osvContext.setOnDraw(onDraw);
     }
 }

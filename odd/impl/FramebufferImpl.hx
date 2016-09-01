@@ -1,9 +1,8 @@
-package odd._impl;
+package odd.impl;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
-import odd.ColorRGB;
 import odd.Framebuffer;
 
 class FramebufferImpl implements Framebuffer

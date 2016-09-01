@@ -14,8 +14,8 @@ extern class Rect
     public function getHeight() : Int;
     public function centerX() : Int;
     public function centerY() : Int;
-    public function exactCenterX() : Float;
-    public function exactCenterY() : Float;
+    public function exactCenterX() : Single;
+    public function exactCenterY() : Single;
     @:overload(function(src : Rect) : Void {})
     public function set(left : Int, top : Int, right : Int, bottom : Int) : Void;
 }
