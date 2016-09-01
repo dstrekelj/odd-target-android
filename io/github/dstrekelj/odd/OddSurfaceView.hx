@@ -1,14 +1,18 @@
 package io.github.dstrekelj.odd;
 
 import android.content.Context;
+import android.content.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import io.github.dstrekelj.odd.OddActivity;
+
 import java.lang.Runnable;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.lang.Thread;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import odd.Framebuffer;
 import odd.impl.FramebufferImpl;
@@ -24,6 +28,8 @@ class OddSurfaceView extends SurfaceView implements Runnable
     var onUpdate : Void->Void;
     var onDraw : Framebuffer->Void;
     var paint : Paint;
+    var rectSrc : Rect;
+    var rectDest : Rect;
 
     public function new(context : Context) : Void
     {
@@ -38,11 +44,14 @@ class OddSurfaceView extends SurfaceView implements Runnable
         onDraw = null;
         onUpdate = null;
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        rectSrc = null;
+        rectDest = new Rect(0, 0, OddActivity.instance.getWidth(), OddActivity.instance.getHeight());
     }
 
     public function setFramebuffer(framebuffer : FramebufferImpl) : Void
     {
         this.framebuffer = framebuffer;
+        rectSrc = new Rect(0, 0, this.framebuffer.width, this.framebuffer.height);
     }
 
     public function setOnUpdate(callback : Void->Void) : Void
@@ -80,9 +89,12 @@ class OddSurfaceView extends SurfaceView implements Runnable
             {
                 if (onUpdate != null) onUpdate();
                 canvas = holder.lockCanvas();
-                canvas.drawColor(0xff00ff00);
-                if (onDraw != null && framebuffer != null) onDraw(framebuffer);
-                canvas.drawBitmap(framebuffer.data, 0, 0, paint);
+                canvas.drawColor(0xff232323);
+                if (onDraw != null && framebuffer != null)
+                {
+                    onDraw(framebuffer);
+                    canvas.drawBitmap(framebuffer.data, rectSrc, rectDest, paint);
+                } 
                 holder.unlockCanvasAndPost(canvas);
             }
             else

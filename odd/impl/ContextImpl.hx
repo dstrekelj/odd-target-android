@@ -18,8 +18,8 @@ class ContextImpl
 
     function run(onUpdate : Void->Void, onDraw : Framebuffer->Void) : Void
     {
-        OddActivity.osvContext.setFramebuffer(framebuffer);
-        OddActivity.osvContext.setOnUpdate(onUpdate);
-        OddActivity.osvContext.setOnDraw(onDraw);
+        OddActivity.instance.osvContext.setFramebuffer(framebuffer);
+        OddActivity.instance.osvContext.setOnUpdate(onUpdate);
+        OddActivity.instance.osvContext.setOnDraw(onDraw);
     }
 }

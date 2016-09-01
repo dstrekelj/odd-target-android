@@ -23,7 +23,6 @@ extern class Canvas
     public function drawRGB(r : Int, g : Int, b : Int) : Void;
     public function drawARGB(a : Int, r : Int, g : Int, b : Int) : Void;
     public function drawColor(color : Int) : Void;
-    public function drawPaint(paint : Paint) : Void;    
     @:overload(function(bitmap : Bitmap, src : Rect, dst : Rect, paint : Paint) : Void {})
     public function drawBitmap(bitmap : Bitmap, left : Single, top : Single, paint : Paint) : Void;
 }
