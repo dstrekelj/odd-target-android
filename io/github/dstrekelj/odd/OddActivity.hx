@@ -35,7 +35,7 @@ class OddActivity extends Activity
         osvContext = new OddSurfaceView(this);
         setContentView(osvContext);
         
-        var mainClass = Type.resolveClass(odd.macros.UtilMacro.getEntryPoint());
+        var mainClass = Type.resolveClass(odd.tools.macros.Utils.getEntryPoint());
         Reflect.callMethod(mainClass, Reflect.field(mainClass, "main"), []);
     }
 

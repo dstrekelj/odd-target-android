@@ -1,2 +1,2 @@
---macro odd.macros.TargetMacro.init()
+--macro odd.tools.macros.TargetMacro.init()
 -D no-compilation
