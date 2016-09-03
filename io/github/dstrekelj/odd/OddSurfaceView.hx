@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.os.Process;
 
 import io.github.dstrekelj.odd.OddActivity;
 
@@ -69,10 +70,12 @@ class OddSurfaceView extends SurfaceView implements Runnable
         trace("OddSurfaceView.resume()");
         if (drawThread == null)
         {
+            trace("Creating new thread");
             isRunning.set(true);
-            drawThread = new Thread(this);
-            drawThread.start();
             isDrawing.set(true);
+            drawThread = new Thread(this);
+            Process.setThreadPriority(Process.THREAD_PRIORITY_URGENT_DISPLAY);
+            drawThread.start();
         }
     }
 
@@ -120,6 +123,7 @@ class OddSurfaceView extends SurfaceView implements Runnable
                     drawThread.join();
                     drawThread = null;
                     retry = false;
+                    trace("Thread joined");
                 }
                 catch (e : java.lang.InterruptedException)
                 {
