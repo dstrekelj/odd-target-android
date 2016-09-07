@@ -4,6 +4,8 @@ Android target for the [Odd software renderer](https://github.com/dstrekelj/odd)
 
 Provides an implementation of the target-specific rendering context and framebuffer.
 
+**Note**, building an Odd project for Android generates an Android Studio 2.1 project. The user is free to modify the project files and generate an APK on his own terms. 
+
 ## Installation
 
 To install both the Odd dependency and this target, run the following commands from your command line:
