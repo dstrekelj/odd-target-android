@@ -8,9 +8,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.os.Process;
 
+import haxe.Int64;
+
 import io.github.dstrekelj.odd.OddActivity;
 
 import java.lang.Runnable;
+import java.lang.System;
 import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -19,6 +22,8 @@ import odd.impl.FramebufferImpl;
 
 class OddSurfaceView extends SurfaceView implements Runnable 
 {
+    static inline var framesPerSecond = 1 / 60 * 1000000000; 
+
     var canvas : Canvas;
     var drawThread : Thread;
     var framebuffer : FramebufferImpl;
@@ -30,6 +35,10 @@ class OddSurfaceView extends SurfaceView implements Runnable
     var paint : Paint;
     var rectSrc : Rect;
     var rectDest : Rect;
+    
+    var timeBefore : Int64;
+    var timeNow : Int64;
+    var timeTotal : Int64;
 
     public function new(context : Context) : Void
     {
@@ -46,6 +55,9 @@ class OddSurfaceView extends SurfaceView implements Runnable
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         rectSrc = null;
         rectDest = new Rect(0, 0, OddActivity.instance.getWidth(), OddActivity.instance.getHeight());
+        timeBefore = 0;
+        timeNow = System.nanoTime();
+        timeTotal = 0;
     }
 
     public function setFramebuffer(framebuffer : FramebufferImpl) : Void
@@ -89,14 +101,27 @@ class OddSurfaceView extends SurfaceView implements Runnable
         {
             if (isDrawing.get() && holder.getSurface().isValid())
             {
-                if (onUpdate != null) onUpdate();
+                if (onUpdate != null)
+                {
+                    timeBefore = timeNow;
+                    timeNow = System.nanoTime();
+                    timeTotal += (timeNow - timeBefore);
+                    if (timeTotal >= framesPerSecond)
+                    {
+                        onUpdate();
+                        timeTotal = 0;
+                    }
+                }
+                
                 canvas = holder.lockCanvas();
                 canvas.drawColor(0xff232323);
+                
                 if (onDraw != null && framebuffer != null)
                 {
                     onDraw(framebuffer);
                     canvas.drawBitmap(framebuffer.data, rectSrc, rectDest, paint);
                 } 
+                
                 holder.unlockCanvasAndPost(canvas);
             }
             else
