@@ -1,6 +1,6 @@
 # odd-target-android
 
-Android target for Odd software renderer project.
+Android target for the [Odd software renderer](https://github.com/dstrekelj/odd) project.
 
 Provides an implementation of the target-specific rendering context and framebuffer.
 
@@ -13,13 +13,20 @@ haxelib git odd https://github.com/dstrekelj/odd.git
 haxelib git odd-target-android https://github.com/dstrekelj/odd-target-android.git
 ```
 
+If you don't have git, do the following:
+
+```
+haxelib dev odd path/to/downloaded/odd/repository
+haxelib dev odd-target-android path/to/downloaded/odd-target-android/repository
+```
+
 ## Usage
 
-Include the following libraries in your project:
+Include the following flags in your project's .hxml file:
 
 ```
 -lib odd
 -lib odd-target-android
-# Your directives go here
+
 -java out/android/
 ```

@@ -1,7 +1,6 @@
 package io.github.dstrekelj.odd;
 
 import android.content.Context;
-import android.content.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
