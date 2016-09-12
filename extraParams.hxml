@@ -1,2 +1,3 @@
 --macro odd.tools.macros.TargetMacro.init()
 -D no-compilation
+-D odd_target_android
